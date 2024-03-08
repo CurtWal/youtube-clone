@@ -1,0 +1,22 @@
+.container {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 20fr 2fr;
+    
+  }
+  
+  #videoRender {
+    width: 95%;
+  }
+  
+  .mainVideo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  
+  .videoFeed {
+    width: 50px;
+  }
+  

@@ -1,0 +1,56 @@
+.input-group.md-form.form-sm.form-1 input {
+    border: 1px solid white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    background-color: #212121;
+    position: sticky;
+    top: 0;
+  }
+  #searchBar{
+    background-color: white;
+  }
+  #ytcorner {
+    margin-right: 15%; /* Push ytcorner and menu to the left */
+    margin-left: 15px;
+  }
+  
+  #menu {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr 1px;
+    gap:1px;
+  }
+
+.menu-button,
+.menu-link,
+.menu-link2 {
+  border: none;
+  color: white;
+  font-size: 150%;
+  margin-top: 5px;
+  display: inline-block;
+}
+.menu-link2{
+  font-size: 175%;
+  text-decoration: none;
+
+}
+  
+  #basic-text1{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
+  }
+  #basic-text1:hover{
+    cursor: pointer;
+  }
+
+  
+  #menu button{
+    font-weight: bold;
+  }
+  

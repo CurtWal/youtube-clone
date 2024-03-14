@@ -1,8 +1,8 @@
 .container {
     margin: 0;
     display: grid;
-    grid-template-columns: 20fr 2fr;
-    
+    grid-template-columns: 20fr 0fr 2fr;
+
   }
   
   #videoRender {
@@ -10,13 +10,14 @@
   }
   
   .mainVideo {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
   }
   
 
   
   .videoFeed {
     width: 50px;
-  }
+    grid-column: 3;
+}
   

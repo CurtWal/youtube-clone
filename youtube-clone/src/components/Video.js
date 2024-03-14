@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PlayVideo from "./PlayVideo.js";
 import Feed from "./Feed.js";
 import Header from "./Header.js";
+import UserMessage from "./UserMessage.js";
 import "./css/Video.css";
 export default class Video extends Component {
   render() {
@@ -9,9 +10,7 @@ export default class Video extends Component {
       <>
       <Header/>
       <div className='container'>
-        <div className="mainVideo">
         <PlayVideo/>
-        </div>
         <div className="videoFeed">
         <Feed/>
         </div>

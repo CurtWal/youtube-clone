@@ -7,3 +7,16 @@
     color:white;
     
 }
+
+.userMessage{
+    margin-left:50px;
+}
+
+#video-info{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.like_dislike{
+cursor:pointer;
+}

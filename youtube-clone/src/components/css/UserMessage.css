@@ -1,0 +1,19 @@
+.like_dislike{
+    width: 15px;
+    display: inline-block;
+} 
+.profile_pic{
+    width:5%;
+    height:5%;
+    border: 2px solid;
+    border-radius: 50%;
+    margin: 0;
+    
+}
+.userMessage{
+    display:flex;
+    
+}
+#input_user{
+   
+}

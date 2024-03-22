@@ -1,109 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react';
 import "./css/Feed.css";
 import { Link } from "react-router-dom";
-import pic1 from "../Assets/b1.png";
-import pic2 from "../Assets/b2.png";
-import pic3 from "../Assets/banner.jpg";
-import pic4 from "../Assets/jean.png";
-import pic5 from "../Assets/port.png";
-import pic6 from "../Assets/bg.jpg";
-import pic7 from "../Assets/y1.png";
-import pic8 from "../Assets/Screenshot_20230208_121550.png";
-export default class Feed extends Component {
-  render() {
-    return (
-        <div className="feed">
-      <Link to={`video`} style={{ textDecoration: 'none', color:"black"}} className='Card'>
-        <img src={pic1} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </Link>
-      <div className='Card'>
-        <img src={pic2} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic3} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic4} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic5} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic6} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic7} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      <div className='Card'>
-        <img src={pic8} alt=""/>
-        <h2>Picture video on background color changer</h2>
-        <h3>Curtick Walton</h3>
-        <p>2 views &bull; 2 days ago</p>
-      </div>
-      </div>
-    )
-  }
-}
+import pic from "../Assets/b1.png";
+const Feed = ({ videos }) => {
+  const filterVideos = videos?.filter(video => video.id.kind === "youtube#video");
+  return (
+    <div className="feed">
+      {filterVideos?.map((video) => (
+        <div className='card' key={video.id.videoId}>
+          <Link to={{ pathname: `/video/${video.id.videoId}`, state: { video } }} style={{ textDecoration: 'none', color:"black"}}>
+            <img
+              src={video.snippet.thumbnails.medium.url}
+              alt={video.snippet.title}
+            />
+            <div className='Title'>
+            <h2>{video.snippet.title}</h2>
+            <h3>{video.snippet.channelTitle}</h3>
+            </div>
+          </Link>
+        </div>
+      ))}
+        {/* <div className='card' style={{width:"25%"}}>
+          <Link to={{ pathname: `/video` }} style={{ textDecoration: 'none', color:"black"}}>
+            <img
+              src="https://i.ytimg.com/vi/BMVyGYekpew/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeZLL1PItsw2ZIn5kPPgQa-Pg1Lg"
+              alt="picture"
+              width="100%"
+            />
+            <div className='Title'>
+            <h2>A round long long long long long long long long long long VIdeo  vdvevsvs vs  vasvsvs vsvsvs  vesvwefw fwsvsdv </h2>
+            <h3>TheBlock  <p> 12 hours ago</p></h3>
+            </div>
+            </Link>
+            </div> */}
+    </div>
+  );
+};
+
+export default Feed;

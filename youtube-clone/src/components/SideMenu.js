@@ -8,7 +8,13 @@ import { IoMdMusicalNote } from "react-icons/io";
 import { FaNewspaper, FaTrophy, FaFireAlt, FaLightbulb, FaHome, FaDollarSign  } from "react-icons/fa";
 import {HiViewBoards } from 'react-icons/hi';
 
-function SideMenu({ name, ...props }) {
+const  SideMenu = ({ name, handleChange, handleSubmit, query,  ...props}) => {
+
+  const handleMenuItemClick = (query) => {
+    handleChange({ target: { value: query } });
+    handleSubmit();
+  };
+
   const customTheme = {
     "root": {
       "base": "h-full",
@@ -91,25 +97,25 @@ function SideMenu({ name, ...props }) {
     <Sidebar theme={customTheme} style={{backgroundColor: "#212121", position: "sticky", top: "81px"}}>
       <Sidebar.Items>
         <Sidebar.ItemGroup >
-          <Sidebar.Item href="#" icon={FaHome}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Home')} icon={FaHome} >
             Home
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaNewspaper}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('News')} icon={FaNewspaper}>
             News
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={GiConsoleController}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Gaming')} icon={GiConsoleController}>
             Gaming
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={IoMdMusicalNote}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Muisc')} icon={IoMdMusicalNote}>
             Muisc
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaTrophy}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Sports')} icon={FaTrophy}>
             Sports
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaFireAlt}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Trending')} icon={FaFireAlt}>
             Trending
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaLightbulb}>
+          <Sidebar.Item onClick={() => handleMenuItemClick('Learning')} icon={FaLightbulb}>
             Learning
           </Sidebar.Item>
         </Sidebar.ItemGroup>

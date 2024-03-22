@@ -1,21 +1,23 @@
-import React, { Component } from 'react'
-import PlayVideo from "./PlayVideo.js";
-import Feed from "./Feed.js";
-import Header from "./Header.js";
-import UserMessage from "./UserMessage.js";
-import "./css/Video.css";
-export default class Video extends Component {
-  render() {
-    return (
-      <>
-      <Header/>
+import React from 'react';
+import Header from './Header.js';
+import PlayVideo from './PlayVideo.js';
+import Feed from './Feed.js';
+
+const Video = ({ location }) => {
+  const video = location.state?.video;
+
+  return (
+    <>
+      <Header />
       <div className='container'>
-        <PlayVideo/>
-        <div className="videoFeed">
-        <Feed/>
-        </div>
+        {video ? (
+          <PlayVideo video={video} />
+        ) : (
+          <p>No video selected</p>
+        )}
       </div>
-      </>
-    )
-  }
-}
+    </>
+  );
+};
+
+export default Video;

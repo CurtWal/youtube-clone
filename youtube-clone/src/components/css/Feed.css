@@ -1,18 +1,30 @@
-.feed{
+.feed {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-column-gap: 16px;
     grid-row-gap: 30px;
     margin-top: 15px;
-    margin-left:5px;
+    margin-left: 5px;
     text-align: start;
-}
-Link{
+  }
+  
+  .link {
     text-decoration: none;
-}
-.Card img{
-    width:100%;
-    height:50%;
+  }
+  
+  .card {
     border-radius: 5px;
-
-}
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card iframe {
+    width: 100%;
+    height: 200px;
+  }
+  .Title{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  }

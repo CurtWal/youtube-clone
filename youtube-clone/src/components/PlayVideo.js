@@ -15,6 +15,7 @@ const PlayVideo = () => {
   const [video, setVideo] = useState(null);
   const [published, setpublished] = useState(null);
 
+  console.log("HERES THE VIDEO " + videoId);
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet`
@@ -26,7 +27,6 @@ const PlayVideo = () => {
           setVideo(data.items[0]);
           console.log(data.items[0]);
           setpublished(data.items[0]);
-          
         } else {
           console.error("No video found");
         }
@@ -38,94 +38,98 @@ const PlayVideo = () => {
   }
   return (
     <>
-    <Header />
-    <div className="videoContainer">
-      <div>
-        <iframe
-          id="videoRender"
-          title={video.snippet.title}
-          width="1500"
-          height="500"
-          src={`https://www.youtube.com/embed/${video.id.videoId}`}
-          allowFullScreen
-          style={{marginTop: "5px", marginLeft: "8px"}}
-        ></iframe>
-      </div>
-      <h2>{video.snippet.title}</h2>
-      <div id="video-info">
-        <h3>
-          {video.snippet.channelTitle}  <div className="inline-flex " role="group">
-                <button
-                  type="button"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                >
-                  Subscribe
-                </button>
-              </div>
-        </h3>
-        <div id="video-stats">
-          <p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "nowrap",
-                flexDirection: "row",
-                textAlign: "center",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <div className="inline-flex " role="group">
-                <button
-                  type="button"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-l-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                >
-                  <img
-                    style={{ marginLeft: "5px" }}
-                    src={thumbup}
-                    className="like_dislike"
-                    alt=""
-                  />
-                  120
-                </button>
-                <button
-                  type="button"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border-t border-b border-gray-200 rounded-r-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                >
-                  <img
-                    style={{ marginLeft: "10px" }}
-                    src={thumbdown}
-                    className="like_dislike"
-                    alt=""
-                  />
-                  12
-                </button>
-              </div>
-              <div className="inline-flex " role="group">
-                <button
-                  type="button"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                >
-                  <img
-                    src={share}
-                    className="like_dislike"
-                    alt=""
-                    style={{ marginLeft: "2px" }}
-                  />{" "}
-                  Share
-                </button>
-              </div>
+      <Header />
+      <div className="videoContainer">
+        <div>
+          <iframe
+            id="videoRender"
+            title={video.snippet.title}
+            width="1500"
+            height="500"
+            src={`https://www.youtube.com/embed/${video.id.videoId}`}
+            allowFullScreen
+            style={{ marginTop: "5px", marginLeft: "8px" }}
+          ></iframe>
+        </div>
+        <h2>{video.snippet.title}</h2>
+        <div id="video-info">
+          <h3>
+            {video.snippet.channelTitle}{" "}
+            <div className="inline-flex " role="group">
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+              >
+                Subscribe
+              </button>
             </div>
-          </p>
+          </h3>
+          <div id="video-stats">
+            <p>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  flexDirection: "row",
+                  textAlign: "center",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <div className="inline-flex " role="group">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-l-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+                  >
+                    <img
+                      style={{ marginLeft: "5px" }}
+                      src={thumbup}
+                      className="like_dislike"
+                      alt=""
+                    />
+                    120
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border-t border-b border-gray-200 rounded-r-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+                  >
+                    <img
+                      style={{ marginLeft: "10px" }}
+                      src={thumbdown}
+                      className="like_dislike"
+                      alt=""
+                    />
+                    12
+                  </button>
+                </div>
+                <div className="inline-flex " role="group">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-full hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+                  >
+                    <img
+                      src={share}
+                      className="like_dislike"
+                      alt=""
+                      style={{ marginLeft: "2px" }}
+                    />{" "}
+                    Share
+                  </button>
+                </div>
+              </div>
+            </p>
+          </div>
         </div>
-      </div>
-      <DescriptionInfo published={published.snippet.publishedAt} description={video.snippet.description} />
-      <div className="userMessage">
-        <UserMessage />
-      </div>
-      <div className="videoFeed">
+        <DescriptionInfo
+          published={published.snippet.publishedAt}
+          description={video.snippet.description}
+        />
+        <div className="userMessage">
+          <UserMessage videoId={videoId} />
+        </div>
+        {/* <div className="videoFeed">
           <Feed />
-        </div>
-    </div>
+        </div> */}
+      </div>
     </>
   );
 };

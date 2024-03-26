@@ -8,24 +8,22 @@ import { useParams } from "react-router-dom";
 import Header from "./Header.js";
 import Feed from "./Feed.js";
 
-const API_KEY = "AIzaSyACZ0u1lBmBNLNDatDLFDHbbazYdSPL968";
-
 const PlayVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState(null);
   const [published, setpublished] = useState(null);
 
-  console.log("HERES THE VIDEO " + videoId);
+  // console.log("HERES THE VIDEO " + videoId);
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet`
+      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.React_APP_YT_API_KEY}&part=snippet`
     )
       .then((response) => response.json())
       .then((data) => {
         // Check if data is returned and has items
         if (data.items && data.items.length > 0) {
           setVideo(data.items[0]);
-          console.log(data.items[0]);
+          // console.log(data.items[0]);
           setpublished(data.items[0]);
         } else {
           console.error("No video found");

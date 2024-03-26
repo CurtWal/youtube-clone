@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../index.css";
-
+import "./css/SideMenu.css";
 import { Sidebar } from "flowbite-react";
 import { BiBuoy } from "react-icons/bi";
 import { GiConsoleController } from "react-icons/gi";
@@ -15,7 +15,14 @@ import {
 } from "react-icons/fa";
 import { HiViewBoards } from "react-icons/hi";
 
-const SideMenu = ({ name, handleChange, handleSideMenu, query, ...props }) => {
+const SideMenu = ({
+  name,
+  handleChange,
+  handleSideMenu,
+  query,
+  toggleSideMenu,
+  ...props
+}) => {
   const handleMenuItemClick = (query) => {
     handleChange({ target: { value: query } });
     handleSideMenu();
@@ -102,68 +109,70 @@ const SideMenu = ({ name, handleChange, handleSideMenu, query, ...props }) => {
     },
   };
   return (
-    <Sidebar
-      theme={customTheme}
-      style={{ backgroundColor: "#212121", position: "sticky", top: "81px" }}
-    >
-      <Sidebar.Items>
-        <Sidebar.ItemGroup>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Home")}
-            icon={FaHome}
-          >
-            Home
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("News")}
-            icon={FaNewspaper}
-          >
-            News
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Gaming")}
-            icon={GiConsoleController}
-          >
-            Gaming
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Muisc")}
-            icon={IoMdMusicalNote}
-          >
-            Muisc
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Sports")}
-            icon={FaTrophy}
-          >
-            Sports
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Trending")}
-            icon={FaFireAlt}
-          >
-            Trending
-          </Sidebar.Item>
-          <Sidebar.Item
-            onClick={() => handleMenuItemClick("Learning")}
-            icon={FaLightbulb}
-          >
-            Learning
-          </Sidebar.Item>
-        </Sidebar.ItemGroup>
-        <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={FaDollarSign}>
-            Buy Premium
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiViewBoards}>
-            Documentation
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={BiBuoy}>
-            Help
-          </Sidebar.Item>
-        </Sidebar.ItemGroup>
-      </Sidebar.Items>
-    </Sidebar>
+    <div className={toggleSideMenu}>
+      <Sidebar
+        theme={customTheme}
+        style={{ backgroundColor: "#212121", position: "sticky", top: "81px" }}
+      >
+        <Sidebar.Items>
+          <Sidebar.ItemGroup>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Home")}
+              icon={FaHome}
+            >
+              Home
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("News")}
+              icon={FaNewspaper}
+            >
+              News
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Gaming")}
+              icon={GiConsoleController}
+            >
+              Gaming
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Muisc")}
+              icon={IoMdMusicalNote}
+            >
+              Muisc
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Sports")}
+              icon={FaTrophy}
+            >
+              Sports
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Trending")}
+              icon={FaFireAlt}
+            >
+              Trending
+            </Sidebar.Item>
+            <Sidebar.Item
+              onClick={() => handleMenuItemClick("Learning")}
+              icon={FaLightbulb}
+            >
+              Learning
+            </Sidebar.Item>
+          </Sidebar.ItemGroup>
+          <Sidebar.ItemGroup>
+            <Sidebar.Item href="#" icon={FaDollarSign}>
+              Buy Premium
+            </Sidebar.Item>
+            <Sidebar.Item href="#" icon={HiViewBoards}>
+              Documentation
+            </Sidebar.Item>
+            <Sidebar.Item href="#" icon={BiBuoy}>
+              Help
+            </Sidebar.Item>
+          </Sidebar.ItemGroup>
+        </Sidebar.Items>
+      </Sidebar>
+    </div>
   );
 };
 

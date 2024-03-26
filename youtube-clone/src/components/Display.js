@@ -3,48 +3,56 @@ import Header from "./Header.js";
 import SideMenu from "./SideMenu.js";
 import Feed from "./Feed.js";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Display = () => {
   const [query, setQuery] = useState("");
   const [videos, setVideos] = useState([]);
-  const history = useNavigate({ replace: true });
+  const [newClassName, setNewClassName] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setQuery(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     if (event) {
       event.preventDefault();
     }
-    history(`/searchfeed?query=${query}`, { replace: true });
-
+    navigate(`/searchfeed?query=${query}`, { replace: true });
+    setQuery("");
   };
-const handleSideMenu = async(event) =>{
+
+  const MenuIcon = () => {
+    setNewClassName((newClassName) => !newClassName);
+  };
+  let toggleSideMenu = newClassName ? "Side" : "";
+
+  const handleSideMenu = async (event) => {
     if (event) {
-        event.preventDefault();
-      }
+      event.preventDefault();
+    }
     try {
-        const response = await axios.get(
-          "https://www.googleapis.com/youtube/v3/search",
-          {
-            params: {
-              q: "Trending", // Provide a default query if needed
-              part: "snippet",
-              maxResults: 1,
-              key: process.env.React_APP_YT_API_KEY,
-              type: "video",
-              regionCode: "US",
-            },
-          }
-        );
-        setVideos(response.data.items);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching initial videos: ", error);
-      }
-}
+      const response = await axios.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        {
+          params: {
+            q: query, // Provide a default query if needed
+            part: "snippet",
+            maxResults: 5,
+            key: process.env.React_APP_YT_API_KEY,
+            type: "video",
+            regionCode: "US",
+          },
+        }
+      );
+      setVideos(response.data.items);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching initial videos: ", error);
+    }
+  };
   useEffect(() => {
     // Function to fetch initial videos when the component mounts
     const fetchInitialVideos = async () => {
@@ -55,7 +63,7 @@ const handleSideMenu = async(event) =>{
             params: {
               q: "Trending", // Provide a default query if needed
               part: "snippet",
-              maxResults: 1,
+              maxResults: 5,
               key: process.env.React_APP_YT_API_KEY,
               type: "video",
               regionCode: "US",
@@ -79,12 +87,15 @@ const handleSideMenu = async(event) =>{
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         query={query}
+        setQuery={setQuery}
+        MenuIcon={MenuIcon}
       />
       <div className="flex">
         <SideMenu
           handleSideMenu={handleSideMenu}
           handleChange={handleChange}
           query={query}
+          toggleSideMenu={toggleSideMenu}
         />
         <div className="container">
           <Feed videos={videos} />

@@ -44,7 +44,7 @@ const PlayVideo = () => {
             title={video.snippet.title}
             width="1500"
             height="500"
-            src={`https://www.youtube.com/embed/${video.id.videoId}`}
+            src={`https://www.youtube.com/embed/${videoId}`}
             allowFullScreen
             style={{ marginTop: "5px", marginLeft: "8px" }}
           ></iframe>

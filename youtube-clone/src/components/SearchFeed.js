@@ -13,7 +13,7 @@ const SearchFeed = () => {
 
   const handleChange = (event) => {
     setnewQuery(event.target.value);
-    console.log(event.target.value);
+    //console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -35,7 +35,7 @@ const SearchFeed = () => {
         }
       );
       setVideos(response.data.items);
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.error("Error fetching initial videos: ", error);
     }
@@ -58,7 +58,7 @@ const SearchFeed = () => {
             }
           );
           setVideos(response.data.items);
-          console.log(response.data);
+          //console.log(response.data);
         }
       } catch (error) {
         console.error("Error fetching videos: ", error);

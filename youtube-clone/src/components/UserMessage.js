@@ -5,8 +5,9 @@ import thumbup from "../Assets/thumb-up.png";
 
 import pic from "../Assets/Bulbasaur.png";
 
-const UserMessage = ({ videoId }) => {
+const UserMessage = ({ videoId, comments }) => {
   const [getComments, setGetComments] = useState([]);
+
   const getVideoComments = async (videoId) => {
     try {
       const response = await axios.get(
@@ -30,6 +31,7 @@ const UserMessage = ({ videoId }) => {
       return []; // Return empty array or handle error
     }
   };
+  
 
   useEffect(() => {
     getVideoComments(videoId);
@@ -37,7 +39,18 @@ const UserMessage = ({ videoId }) => {
   if (!getComments) {
     return <p>No comments available</p>;
   }
-
+  const formatDate = (publishedAt) => {
+    console.log("Published At:", publishedAt); // Log the publishedAt value to see its format
+    const publishedDate = new Date(publishedAt);
+    console.log("Parsed Date:", publishedDate); // Log the parsed date
+    if (isNaN(publishedDate.getTime())) {
+      console.error("Invalid date format:", publishedAt);
+      return ""; // Return empty string if date format is invalid
+    }
+    const month = publishedDate.toLocaleString("default", { month: "short" }); // Get full month name
+    const date = publishedDate.getDate();
+    return `${month} ${date}`;
+  };
   //snippet
   //topLevelComment
   //snippet
@@ -49,6 +62,7 @@ const UserMessage = ({ videoId }) => {
 
   return (
     <div id="users">
+      <h6>{comments} comments</h6>
       <div className="userMessage">
         <img
           src={pic}
@@ -58,7 +72,7 @@ const UserMessage = ({ videoId }) => {
         ></img>
         <div className="message">
           <input
-            style={{ width: "950px" }}
+            
             placeholder="Add a comment..."
           ></input>
           <hr style={{ marginBottom: "30px", marginTop: "0px" }} />
@@ -74,7 +88,7 @@ const UserMessage = ({ videoId }) => {
           <div className="message">
             <p>
               {comment.snippet.topLevelComment.snippet.authorDisplayName}{" "}
-              {comment.snippet.topLevelComment.snippet.publishedAt}
+              {formatDate(comment.snippet.topLevelComment.snippet.publishedAt)}
             </p>
             <p style={{ marginTop: "0" }}>
               {comment.snippet.topLevelComment.snippet.textDisplay}

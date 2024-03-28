@@ -8,10 +8,11 @@ const Header = ({ handleChange, handleSubmit, query, MenuIcon }) => {
   return (
     <div className="header-content">
       <div id="ytcorner">
-        <div id="menu">
+        <div id="menu"><div>
           <button class="menu-button" onClick={MenuIcon}>
             ☰
-          </button>
+          </button></div>
+          
           <a
             class="menu-link"
             href="/"
@@ -24,7 +25,7 @@ const Header = ({ handleChange, handleSubmit, query, MenuIcon }) => {
             href="/"
             style={{ color: "white", display: "inline" }}
           >
-            YouTube
+           YouTube
           </a>
         </div>
       </div>
@@ -39,11 +40,10 @@ const Header = ({ handleChange, handleSubmit, query, MenuIcon }) => {
             placeholder="Search for videos..."
             aria-label="Search"
           />
-          <div className="input-group-append">
+          <div className="input-group-append" id="icon-button">
             <button
               className="btn btn-outline-white d-flex align-items-center"
               type="submit"
-              style={{ margin: "0", height: "38px" }}
             >
               <MDBIcon icon="search" />
             </button>

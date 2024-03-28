@@ -23,9 +23,8 @@ const SideMenu = ({
   toggleSideMenu,
   ...props
 }) => {
-  const handleMenuItemClick = (query) => {
-    handleChange({ target: { value: query } });
-    handleSideMenu();
+  const handleMenuItemClick = (topic) => {
+    handleChange(topic);
   };
 
   const customTheme = {
@@ -109,7 +108,7 @@ const SideMenu = ({
     },
   };
   return (
-    <div className={toggleSideMenu}>
+    <div className={toggleSideMenu} id='sideMenu'>
       <Sidebar
         theme={customTheme}
         style={{ backgroundColor: "#212121", position: "sticky", top: "81px" }}
@@ -135,10 +134,10 @@ const SideMenu = ({
               Gaming
             </Sidebar.Item>
             <Sidebar.Item
-              onClick={() => handleMenuItemClick("Muisc")}
+              onClick={() => handleMenuItemClick("Music")}
               icon={IoMdMusicalNote}
             >
-              Muisc
+              Music
             </Sidebar.Item>
             <Sidebar.Item
               onClick={() => handleMenuItemClick("Sports")}

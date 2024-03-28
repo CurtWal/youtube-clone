@@ -1,4 +1,4 @@
-.like_dislike{
+.like_dislike, .like-like, .share{
     width: 15px;
     display: inline-block;
 } 
@@ -10,10 +10,22 @@
     margin: 0;
     
 }
+.message input{
+    width: 950px;
+}
 .userMessage{
     display:flex;
     
 }
-#input_user{
-   
+@media(max-width:320px){
+    #users{
+        width:320px;
+    }
+    .profile_pic{
+        width:30px;
+    }
+
+    .message input{
+        width: 260px;
+    }
 }

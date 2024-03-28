@@ -98,3 +98,9 @@ hr{
 .Side{
   display:none;
 }
+
+@media (max-width:320px){
+  #sideMenu{
+    display:none;
+  }
+}

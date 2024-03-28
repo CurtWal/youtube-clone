@@ -51,8 +51,35 @@
     cursor: pointer;
   }
 
-  
+  #icon-button button{
+    margin: 0; 
+    height: 38px; 
+  }
+
   #menu button{
     font-weight: bold;
   }
   
+  @media(max-width:320px){
+    .menu-button{
+      display:none;
+    }
+    #menu a{
+      align-content: center;
+
+    }
+    .menu-link2{
+      margin-right:50px;
+      font-size: 15px;
+    }
+    #searchBar{
+      height:30px;
+      align-self: center;
+    }
+    #icon-button button {
+      margin-left: 0;
+      margin-right: 15px;
+      height: 30px;
+      align-self: center;
+    }
+  }

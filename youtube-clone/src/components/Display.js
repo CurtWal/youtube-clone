@@ -7,13 +7,17 @@ import { useNavigate } from "react-router-dom";
 
 const Display = () => {
   const [query, setQuery] = useState("");
+  const [topic, setTopic] = useState("");
   const [videos, setVideos] = useState([]);
   const [newClassName, setNewClassName] = useState(false);
   const navigate = useNavigate();
 
+  const handleSideTopic = async (selectedTopic) => {
+    setTopic(selectedTopic);
+  };
   const handleChange = (event) => {
     setQuery(event.target.value);
-    console.log(event.target.value);
+    //console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -48,20 +52,49 @@ const Display = () => {
         }
       );
       setVideos(response.data.items);
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.error("Error fetching initial videos: ", error);
     }
   };
   useEffect(() => {
     // Function to fetch initial videos when the component mounts
-    const fetchInitialVideos = async () => {
+    const fetchVideos = async () => {
       try {
+        // Customize search query based on the selected topic
+        let searchQuery = "";
+        switch (topic) {
+          case "Home":
+            searchQuery = "Top home videos";
+            break;
+          case "News":
+            searchQuery = "Latest news videos";
+            break;
+          case "Gaming":
+            searchQuery = "Gaming videos";
+            break;
+          case "Music":
+            searchQuery = "Trending music videos";
+            break;
+          case "Sports":
+            searchQuery = "Exciting sports videos";
+            break;
+          case "Learning":
+            searchQuery = "Educational videos";
+            break;
+          case "Trending":
+            searchQuery = "Trending videos";
+            break;
+          default:
+            searchQuery = "Default search query";
+            break;
+        }
+
         const response = await axios.get(
           "https://www.googleapis.com/youtube/v3/search",
           {
             params: {
-              q: "Trending", // Provide a default query if needed
+              q: searchQuery,
               part: "snippet",
               maxResults: 5,
               key: process.env.React_APP_YT_API_KEY,
@@ -71,15 +104,13 @@ const Display = () => {
           }
         );
         setVideos(response.data.items);
-        console.log(response.data);
       } catch (error) {
-        console.error("Error fetching initial videos: ", error);
+        console.error("Error fetching videos: ", error);
       }
     };
 
-    // Call the fetchInitialVideos function when the component mounts
-    fetchInitialVideos();
-  }, []);
+    fetchVideos();
+  }, [topic]);
 
   return (
     <div>
@@ -93,7 +124,7 @@ const Display = () => {
       <div className="flex">
         <SideMenu
           handleSideMenu={handleSideMenu}
-          handleChange={handleChange}
+          handleChange={handleSideTopic}
           query={query}
           toggleSideMenu={toggleSideMenu}
         />

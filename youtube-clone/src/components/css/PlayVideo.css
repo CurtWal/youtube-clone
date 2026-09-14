@@ -11,52 +11,49 @@
 }
 
 #video-info {
-  display: grid;
-  grid-template-areas: 
-    "channel-Name subCount subscribe-button like-button share-button";
-   justify-content: left;
-   /* grid-template-columns: 2fr 1fr;  */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding: 8px;
 }
 #videoRender {
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   margin-top: 5px;
   margin-left: 8px;
+  border: none;
+  display: block;
 }
 .like_dislike, .like-button, .share {
   cursor: pointer;
 }
-#channel-Name{
-grid-area:channel-Name;
-width:50%;
+#channel-Name {
+  width: auto;
+  max-width: 250px;
+  overflow: hidden;
 }
-#channel-Name h3{
-margin:0;
-width:50%;
-white-space: nowrap;
+#channel-Name h3 {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-#subCount{
-    grid-area:subCount;
-    margin-left: 15px;
-    margin-top: 7px;
-}
-#like-button{
-grid-area:like-button;
-margin-left: 540px;
-margin-right: 5px;
+#subCount { margin: 0; }
+#subscribe-button { margin: 0; }
+#like-button {
+  margin-left: auto; /* pushes like/share to the right on wide screens */
+  margin-right: 5px;
 }
 #like-button button{
 
 }
-
-#share-button{
-    grid-area: share-button;
-}
-#share-button button{
-    width:110px;
-
-}
-#subscribe-button{
-    grid-area: subscribe-button;
-    margin-left: 10px;
+#share-button button { width: auto; padding: 0 16px; }
+@media (max-width: 600px) {
+  #video-info { gap: 10px 12px; }
+  #like-button { margin-left: 0; } /* stop pushing right on small screens, let it wrap naturally */
 }
 @media (max-width: 320px) {
   #videoRender {

@@ -1,9 +1,8 @@
-.container {
-    margin: 0;
-    display: grid;
-    grid-template-columns: 20fr 0fr 2fr;
-
-  }
+.videoPageWrapper {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 20px clamp(12px, 4vw, 5%);
+}
   
   #videoRender {
     width: 95%;
